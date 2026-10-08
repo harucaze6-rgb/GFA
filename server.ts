@@ -117,7 +117,7 @@ app.post('/api/ai-analyst', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Question parameter is required.' });
     }
 
-    const systemInstruction = `You are AurumIntel AI, an elite institutional quantitative gold market strategist, macroeconomic researcher, and financial-data analyst.
+    const systemInstruction = `You are GFA AI, an elite institutional quantitative gold market strategist, macroeconomic researcher, and financial-data analyst.
 Your objective is to provide rigorous, institutional-grade market intelligence to portfolio managers, bullion dealers, and macro traders.
 
 CRITICAL RULES:
@@ -182,7 +182,7 @@ async function startServer() {
   }
 
   app.listen(Number(PORT), '0.0.0.0', () => {
-    console.log(`AurumIntel Terminal Server running at http://0.0.0.0:${PORT}`);
+    console.log(`GFA Terminal Server running at http://0.0.0.0:${PORT}`);
   });
 }
 

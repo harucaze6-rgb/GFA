@@ -26,7 +26,7 @@ export const AIAnalystView: React.FC<AIAnalystViewProps> = ({
     {
       id: 'welcome',
       role: 'assistant',
-      content: `### AurumIntel Institutional Intelligence Briefing
+      content: `### GFA Institutional Intelligence Briefing
 
 **[FACT]**: International Spot Gold (XAU/USD) is currently trading at **$${priceData.xauUsd.value.toFixed(2)}** (${priceData.xauUsd.change1D! >= 0 ? '+' : ''}${priceData.xauUsd.change1D?.toFixed(2)}% 1D). Indian domestic landed 24K gold is at **₹${priceData.inr10g24k.value.toLocaleString()}/10g**.
 
@@ -205,7 +205,7 @@ export const AIAnalystView: React.FC<AIAnalystViewProps> = ({
             <div className="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center shrink-0">
               <Loader2 className="w-4 h-4 animate-spin" />
             </div>
-            <span>AurumIntel AI is querying multi-factor model and formulating institutional synthesis...</span>
+            <span>GFA AI is querying multi-factor model and formulating institutional synthesis...</span>
           </div>
         )}
       </div>

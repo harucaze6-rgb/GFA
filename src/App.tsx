@@ -1,5 +1,5 @@
 /**
- * AurumIntel - Quantitative Gold Market Intelligence Terminal
+ * GFA - Quantitative Gold Factor Analytics Terminal
  * Multi-factor institutional platform evaluating global macro, real yields,
  * USD currency transmission, and the Indian domestic gold environment.
  */
@@ -648,7 +648,7 @@ export default function App() {
       {/* Terminal Footer */}
       <footer className="bg-[#080b11] border-t border-slate-800/80 px-4 py-2.5 text-[11px] font-mono text-slate-500 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <span className="text-slate-400 font-semibold">AurumIntel Quantitative Terminal</span>
+          <span className="text-slate-400 font-semibold">GFA Quantitative Terminal</span>
           <span>•</span>
           <span>Three-Layer Transmission Architecture</span>
           <span>•</span>

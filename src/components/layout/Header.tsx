@@ -61,10 +61,10 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-6 shrink-0">
           {/* Logo & Brand */}
           <div className="flex items-center gap-2 pr-4 border-r border-slate-800">
-            <div className="w-5 h-5 rounded bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black text-xs shadow-sm">
-              Au
+            <div className="w-5 h-5 rounded bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black text-[10px] tracking-tight shadow-sm">
+              GFA
             </div>
-            <span className="font-bold text-slate-100 tracking-wider">AURUMINTEL</span>
+            <span className="font-bold text-slate-100 tracking-wider">GFA</span>
             <span className="text-[10px] text-amber-400/90 font-medium px-1.5 py-0.2 rounded bg-amber-400/10 border border-amber-400/20">
               MACRO QUANT
             </span>
