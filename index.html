@@ -38,7 +38,7 @@
         } catch (e) {}
 
         // 2. Prevent browser extension inpage scripts from throwing uncaught cross-origin frame errors
-        // (such as crypto wallet extensions trying to read top.location.origin inside iframe)
+        // and suppress HMR websocket close errors in iframe environment
         function isExtensionOrFrameError(msg, source, stack) {
           var combined = String(msg || '') + ' ' + String(source || '') + ' ' + String(stack || '');
           return combined.indexOf('chrome-extension://') !== -1 ||
@@ -46,7 +46,10 @@
                  combined.indexOf('Blocked a frame with origin') !== -1 ||
                  combined.indexOf('cross-origin frame') !== -1 ||
                  combined.indexOf('Cannot set property fetch of #<Window>') !== -1 ||
-                 combined.indexOf('which has only a getter') !== -1;
+                 combined.indexOf('which has only a getter') !== -1 ||
+                 combined.indexOf('WebSocket closed without opened') !== -1 ||
+                 combined.indexOf('failed to connect to websocket') !== -1 ||
+                 combined.indexOf('WebSocket') !== -1;
         }
 
         window.addEventListener('error', function(e) {
