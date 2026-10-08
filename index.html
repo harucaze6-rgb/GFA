@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        // 1. Ensure window.fetch has both getter and setter so browser extensions or interceptors
+        // that assign window.fetch = ... do not throw:
+        // TypeError: Cannot set property fetch of #<Window> which has only a getter
+        try {
+          var _origFetch = window.fetch;
+          var _currentFetch = _origFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _currentFetch;
+            },
+            set: function(fn) {
+              _currentFetch = fn;
+            },
+            configurable: true,
+            enumerable: true
+          });
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            try {
+              Object.defineProperty(Window.prototype, 'fetch', {
+                get: function() {
+                  return _currentFetch;
+                },
+                set: function(fn) {
+                  _currentFetch = fn;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e) {}
+          }
+        } catch (e) {}
+
+        // 2. Prevent browser extension inpage scripts from throwing uncaught cross-origin frame errors
+        // (such as crypto wallet extensions trying to read top.location.origin inside iframe)
+        function isExtensionOrFrameError(msg, source, stack) {
+          var combined = String(msg || '') + ' ' + String(source || '') + ' ' + String(stack || '');
+          return combined.indexOf('chrome-extension://') !== -1 ||
+                 combined.indexOf('moz-extension://') !== -1 ||
+                 combined.indexOf('Blocked a frame with origin') !== -1 ||
+                 combined.indexOf('cross-origin frame') !== -1 ||
+                 combined.indexOf('Cannot set property fetch of #<Window>') !== -1 ||
+                 combined.indexOf('which has only a getter') !== -1;
+        }
+
+        window.addEventListener('error', function(e) {
+          var msg = e.message || (e.error && e.error.message);
+          var src = e.filename || (e.error && e.error.stack);
+          var stack = e.error && e.error.stack;
+          if (isExtensionOrFrameError(msg, src, stack)) {
+            e.preventDefault();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(e) {
+          var reason = e.reason;
+          var msg = reason && (reason.message || reason.stack);
+          var stack = reason && reason.stack;
+          if (isExtensionOrFrameError(msg, '', stack)) {
+            e.preventDefault();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
+    <title>AurumIntel - Quantitative Gold Market Intelligence Terminal</title>
+    <meta name="description" content="Multi-factor institutional gold market intelligence dashboard modeling global macro, real yields, USD transmission, and the Indian domestic gold environment with real-time data sync." />
+    <meta property="og:title" content="AurumIntel - Quantitative Gold Market Intelligence Terminal" />
+    <meta property="og:description" content="Multi-factor institutional gold market intelligence dashboard modeling global macro, real yields, USD transmission, and the Indian domestic gold environment with real-time data sync." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#0b0e14] text-slate-100 antialiased selection:bg-amber-500/30 selection:text-amber-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

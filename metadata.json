@@ -1,0 +1,6 @@
+{
+  "name": "AurumIntel - Quantitative Gold Market Intelligence Terminal",
+  "description": "Multi-factor institutional gold market intelligence dashboard modeling global macro, real yields, USD transmission, and the Indian domestic gold environment with real-time data sync.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
